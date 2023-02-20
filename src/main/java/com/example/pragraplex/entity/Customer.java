@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Data
 @Entity
@@ -28,4 +29,7 @@ public class Customer {
 
     private Date createDate;
     private Date updateDate;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders;
 }
