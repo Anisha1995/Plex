@@ -14,5 +14,7 @@ public interface CustomerRepo extends JpaRepository<Customer, Integer >{
     List<Customer>findCustomerByLastName(String lastName);
 
     @Query("select c from Customer c where len(c.login)<:length")
+        //@Query(value = "SELECT * FROM TABLE_CUSTOMER C WHERE LEN(C.LOGIN) = :length", nativeQuery = true)
+
     List<Customer> withLoginLessthanN(int length);
 }

@@ -1,6 +1,7 @@
 package com.example.pragraplex.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -23,8 +24,13 @@ public class Order {
     )
     private UUID id;
      private String movieName;
+//ONE ORDER HAS many MOVIE
+@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+@JoinColumn(name = "MovieId", referencedColumnName = "Movie_ID")
+private Movie movie;
     private Date orderDate;
     private  Date showDate;
+    @JsonProperty("charge_amount")
     private  double amount;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.DETACH)
